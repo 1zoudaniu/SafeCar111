@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="head_color">#F9F9F9</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="window_gray">#f4f4f4</color>
+    <color name="primary_text">#ffffff</color>
+    <color name="secondary_text">#ffffff</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="black_30">#30000000</color>
+    <color name="black_20">#20000000</color>
+    <color name="txt_gray">#999999</color>
+    <color name="bag_gray_transparent">#00FFFFFF</color>
+    <color name="text_color_context">#666666</color><!-- 字体颜色  标题灰色 -->
+    <color name="text_color_title">#333333</color><!-- 字体颜色  标题灰色 -->
+    <color name="text_color_qianhui">#999999</color><!-- 字体颜色  标题灰色 -->
+    <color name="title_bag">#e84d34</color>
+    <color name="text_color_golden">#fe6925</color>
+    <color name="title_top_alpha">#90333333</color><!--标题黑色半透明-->
+    <color name="gray">#eef0f0</color>
+    <color name="tab_color">#36C8B0</color>
+    <color name="linen">#FAF0E6</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="red">#FC2C2C</color>
+    <color name="gray_driver">#e4e1e1</color>
+    <color name="alph_red">#55FC2C2C</color>
+
+
+    <color name="text_color_first">#636366</color><!-- 字体颜色  标题灰色 -->
+
+
+    <color name="text_color_first1">#00859cea</color>
+    <color name="text_color_first2">#ff3F51B5</color>
+
+    <color name="colorPrimary11">#589ff1</color>
+
+    <!--3、1页面左边的expandlistview的父类背景色-->
+    <color name="f3_eplv_bg">#f3f3f3</color>
+    <!--1.2页面地图下面的列表头的颜色-->
+    <color name="f1_at_listview_head_bg">#f3f3f3</color>
+
+
+    <color name="color_dialog_content">#ed7861</color>
+    <color name="color_dialog_gray">#ededf3</color>
+
+
+
+    <color name="dialog_checked">#fff</color>
+    <color name="dialog">#F9F9F9</color>
+
+    <color name="test">#0000ff</color>
+
+</resources>

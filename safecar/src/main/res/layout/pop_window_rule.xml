@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><!--android:background="@color/tab_color">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="220dp"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="评分规则详情"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_height="130dp">
+
+        <TextView
+            android:paddingLeft="10dp"
+            android:paddingRight="30dp"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:text=" 1，车队总分为100分，车辆总分为100分。\n 2，车队总分为所有车辆的平均分。\n 3，如何提高分数?控制行驶速度，减少三急行为，避免疲劳驾驶。"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="bottom|center_horizontal"
+        android:text="确    认"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

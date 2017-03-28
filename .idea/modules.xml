@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DatePicker/DatePicker.iml" filepath="$PROJECT_DIR$/DatePicker/DatePicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SafeCar.iml" filepath="$PROJECT_DIR$/SafeCar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jazzyListViewlibrary/jazzyListViewlibrary.iml" filepath="$PROJECT_DIR$/jazzyListViewlibrary/jazzyListViewlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lcrapiddeveloplibrary/lcrapiddeveloplibrary.iml" filepath="$PROJECT_DIR$/lcrapiddeveloplibrary/lcrapiddeveloplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/safecar/safecar.iml" filepath="$PROJECT_DIR$/safecar/safecar.iml" />
+    </modules>
+  </component>
+</project>

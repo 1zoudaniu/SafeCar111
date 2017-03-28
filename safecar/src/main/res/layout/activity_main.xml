@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".MVP.Home.HomeTabActivity">
+
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="45dp"-->
+    <!--android:background="?attr/colorPrimary"-->
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:minHeight="?attr/actionBarSize"-->
+    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+    <!--app:theme="@style/ThemeOverlay.AppCompat">-->
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/ac_main_tootbar_rl"-->
+    <!--style="@style/ActivityTitle"-->
+    <!--&gt;-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/hometab_toolbar_textview_title"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:gravity="center"-->
+    <!--android:text="推荐3"-->
+
+    <!--android:textSize="22dp"-->
+    <!--/>-->
+    <!--</RelativeLayout>-->
+    <!--</android.support.v7.widget.Toolbar>-->
+
+
+    <FrameLayout
+        android:id="@+id/hometab_context"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"></FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/tab_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/hometab_radio"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingTop="5dp">
+
+            <RadioButton
+                android:id="@+id/rb_home1"
+                style="@style/RadioButtonBottomTab"
+                android:checked="true"
+                android:drawableTop="@drawable/tab_0_back"
+                android:text="@string/tab_home1"/>
+
+            <RadioButton
+                android:id="@+id/rb_home2"
+                style="@style/RadioButtonBottomTab"
+                android:drawableTop="@drawable/tab_1_back"
+                android:text="@string/tab_home2"/>
+
+            <RadioButton
+                android:id="@+id/rb_home3"
+                style="@style/RadioButtonBottomTab"
+                android:drawableTop="@drawable/tab_2_back"
+                android:text="@string/tab_home3"/>
+
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>
+

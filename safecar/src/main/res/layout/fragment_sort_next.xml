@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="safecar.yiye.apackage.com.safecar.MVP.Home.Fragment.SortNextFragment">
+
+    <ListView
+        android:id="@+id/lv_left_next"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:divider="#00000000"
+        android:background="@color/white"></ListView>
+
+    <ExpandableListView
+        android:id="@+id/expendlist_next"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:divider="#00000000"
+        android:background="@color/white"></ExpandableListView>
+
+</LinearLayout>

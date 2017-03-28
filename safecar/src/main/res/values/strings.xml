@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">出车宝</string>
+    <string name="tab_home1">首页</string>
+    <string name="tab_home2">明细</string>
+    <string name="tab_home3">排行</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ichuche">爱出车</string>
+    <string name="action_settings">设置</string>
+    <string name="tab_home2_driver">历史</string>
+    <string name="tab_home3_my">我的</string>
+
+    <string name="add_attention">设为默认</string>
+    <string name="user_post">所属车队：阿牛哥车队</string>
+    <string name="user_book">车号：AE321</string>
+    <string name="user_name">西北老狼michael</string>
+    <string name="user_des">秋名山上行人稀，常有车手较高低；如今车道依旧在，不见当年老司机！</string>
+    <string name="user_recommend_tip">推荐的好车</string>
+</resources>

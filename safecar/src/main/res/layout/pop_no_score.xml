@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="300dp"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:background="@color/white"-->
+    <!--android:orientation="vertical">-->
+
+
+    <!--<ScrollView-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="140dp">-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="280dp"-->
+                <!--android:layout_height="140dp"-->
+                <!--android:padding="20dp"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:text="...该车辆当日无信号，请尽快确认车辆情况！如该车辆已经下降，请尽快联系后台。\n\n18616969935"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="16sp" />-->
+
+            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/pop_no_score_call"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="300dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:paddingLeft="30dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:paddingRight="30dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:paddingTop="0dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="18616969935"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textColor="@color/white"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textSize="20sp" />&ndash;&gt;-->
+
+    <!--</ScrollView>-->
+
+
+    <!--<Button-->
+        <!--android:id="@+id/button_no_score"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:gravity="bottom|center_horizontal"-->
+        <!--android:text="确    认"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="18sp" />-->
+
+
+<!--</LinearLayout>-->
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:clickable="true"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="20dp" >-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:orientation="vertical" >-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/title"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="提示"-->
+            <!--android:visibility="visible" />-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/content"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center" >-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/message"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="left|center"-->
+                <!--android:lineSpacingMultiplier="1.5"-->
+                <!--android:minHeight="120dp"-->
+                <!--android:paddingBottom="15dp"-->
+                <!--android:paddingLeft="20dp"-->
+                <!--android:paddingRight="20dp"-->
+                <!--android:paddingTop="15dp" />-->
+        <!--</LinearLayout>-->
+
+        <!--<View-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="1px"-->
+            <!--android:background="#ffd0d0d0" />-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:background="@color/head_color"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal" >-->
+
+            <!--<Button-->
+                <!--android:id="@+id/positiveButton"-->
+                <!--android:layout_width="114dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:gravity="center"-->
+                <!--android:text="确认" />-->
+
+            <!--<Button-->
+                <!--android:id="@+id/negativeButton"-->
+                <!--android:layout_width="114dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:background="@color/gray"-->
+                <!--android:gravity="center"-->
+                <!--android:text="取消" />-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+<!--</FrameLayout>-->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="150dp"
+    android:clickable="true"
+    android:background="@color/alph_red"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:lineSpacingMultiplier="1.5"
+                android:minHeight="120dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="该车辆当日无信号，请尽快确认车辆情况！如该车辆已经下降，请尽快联系后台。\n\n1861696993"
+                android:paddingTop="15dp" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="300dp"
+        android:layout_height="10px"
+        android:background="#8ECB54" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:background="@color/head_color"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/positiveButton"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="确 认" />
+
+    </LinearLayout>
+</FrameLayout>

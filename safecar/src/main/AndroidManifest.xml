@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="safecar.yiye.apackage.com.safecar">
+
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!--保存资源到SD卡-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <!-- 6.0需要申请的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- //定位包、导航包需要的额外权限（注：基础权限也需要）6.0 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 允许程序访问额外的定位提供者指令 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <!-- &lt;!&ndash;获取模拟定位信息，一般用于帮助开发者调试应用&ndash;&gt; -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" /> -->
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name=".Boss.MyApplication.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppThemeMainActivity">
+
+        <!--高德地图的配置-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="31ebab4b055b5ee66331482471d6bc17" />
+
+
+        <!--欢迎界面-->
+        <activity
+            android:name=".MVP.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--主界面的antivity-->
+        <activity
+            android:name=".MVP.Home.HomeTabActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppThemeMainActivity">
+
+        </activity>
+
+        <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
+        <service android:name="com.amap.api.location.APSService" />
+
+        <!--mob的短信验证-->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!--登录界面-->
+        <activity
+            android:name=".MVP.LoginActivity"
+            android:theme="@style/loginTheme"></activity>
+
+        <!--轨迹点界面-->
+        <activity android:name=".MVP.Home.Activity.SingleCarTodayActivity" />
+
+        <!--用户中心界面-->
+        <activity android:name=".MVP.Home.Activity.PersonInfoActivity" />
+
+        <!--测试界面-->
+        <activity android:name=".MVP.Home.Activity.TestActivity">
+
+        </activity>
+
+        <!--历史分数分布趋势-->
+        <activity android:name=".MVP.Home.Activity.HistoryCarScoreActivity" />
+
+
+        <!--版本升级的Bugly配置-->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:theme="@android:style/Theme.Translucent" />
+        <!--版本升级的Bugly配置-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="safecar.yiye.apackage.com.safecar.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

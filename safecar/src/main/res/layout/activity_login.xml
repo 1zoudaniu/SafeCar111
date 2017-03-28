@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:id="@+id/login_bg"
+            android:layout_width="800dp"
+            android:layout_height="match_parent"
+            android:clipToPadding="true"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/loginbg"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/ic_launcher" />
+
+            <RelativeLayout
+                android:id="@+id/login_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:id="@+id/username_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:gravity="center">
+
+                    <EditText
+                        android:id="@+id/et_phone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp"
+                        android:hint="请输入您的手机号"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:paddingLeft="55dp"
+                        android:paddingRight="60dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/white">
+
+                    </EditText>
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="21dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/login_usr_in_img"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/contry_sn"
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:text="+62"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:visibility="invisible" />
+
+                    <Button
+                        android:id="@+id/bt_username_clear"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/button_clear"
+                        android:visibility="invisible" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/usercode_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/username_layout"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginStart="7dp"
+                        android:background="@drawable/login_code_in_img" />
+
+                    <Button
+                        android:id="@+id/bt_pwd_clear"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginRight="33dp"
+                        android:background="@drawable/button_clear"
+                        android:visibility="invisible" />
+
+                    <EditText
+                        android:id="@+id/et_phone_code"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:hint="请输入验证码"
+                        android:inputType="textPassword"
+                        android:maxLength="20"
+                        android:paddingLeft="55dp"
+                        android:paddingRight="60dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/white">
+
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/tv_get_phone_code"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@color/transparent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:text="获取验证码"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/btn_submit_user"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/usercode_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/buttonstyle"
+                    android:gravity="center"
+                    android:text="登        录"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btn_submit_test"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/btn_submit_user"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/buttonstyle"
+                    android:gravity="center"
+                    android:text="游客登陆"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/remember_layout000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+</RelativeLayout>
+

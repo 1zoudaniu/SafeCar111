@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:weightSum="4">
+
+
+    <TextView
+        android:id="@+id/singcar_lv_time"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="发生时间"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/singcar_lv_event"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="扣分项"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/singcar_lv_score1"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="扣分1"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/singcar_lv_score2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="扣分2"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/singcar_lv_location"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="10dp"
+        android:src="@drawable/poi_marker_pressed"
+        android:text="定位"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+
+</LinearLayout>
+
+    <!--<LinearLayout--><!--android:id="@+id/activity_single_car_today_listview_ll"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--android:background="#fff"-->
+
+    <!--android:orientation="horizontal"--><!--android:padding="5dp">-->
+
+    <!--<TextView--><!--android:id="@+id/activity_single_car_today_listview__time"--><!--android:layout_width="0dp"--><!--android:layout_height="wrap_content"--><!--android:layout_weight="1"-->
+
+    <!--android:gravity="center_vertical"--><!--android:text="时间"--><!--android:textColor="#636366"--><!--android:textSize="15sp"/>-->
+
+    <!--<TextView--><!--android:id="@+id/activity_single_car_today_listview__event"--><!--android:layout_width="0dp"--><!--android:layout_height="60dp"--><!--android:layout_marginLeft="20dp"--><!--android:layout_weight="1"--><!--android:gravity="left|center_vertical"--><!--android:text="车牌号"--><!--android:textColor="#636366"--><!--android:textSize="15sp"/>-->
+
+    <!--<TextView--><!--android:id="@+id/activity_single_car_today_listview__score"--><!--android:layout_width="0dp"--><!--android:layout_height="60dp"--><!--android:layout_marginLeft="20dp"--><!--android:layout_weight="1"--><!--android:gravity="right|center_vertical"--><!--android:text="车  分数"--><!--android:textColor="#636366"--><!--android:textSize="15sp"/>--><!--</LinearLayout>-->
