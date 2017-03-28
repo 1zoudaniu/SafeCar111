@@ -17,6 +17,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
@@ -97,7 +98,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
         AMap.OnCameraChangeListener,
         AMap.OnPOIClickListener, AMapLocationListener,
         GeocodeSearch.OnGeocodeSearchListener,
-        AdapterView.OnItemClickListener {
+        AdapterView.OnItemClickListener, AMap.OnMapClickListener {
 
     @BindView(R.id.activity_home_singlecartoday_back)
     ImageView mActivityHomeSinglecartodayBack;
@@ -165,6 +166,10 @@ public class SingleCarTodayActivity extends BaseActivity implements
     private int dayint;
     private Polyline polyline;
     private String BaseToken;
+    private MarkerOptions markOptiopnsMiddleUp;
+    private Marker markerMiddleUp;
+    private MarkerOptions markOptiopnsMiddleDown;
+    private Marker markerMiddleDown;
 
 
     @Override
@@ -293,6 +298,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
         aMap.setOnMapLoadedListener(this);
         aMap.setOnCameraChangeListener(this);
         aMap.setOnPOIClickListener(this);
+        aMap.setOnMapClickListener(this);
         progDialog = new ProgressDialog(this);
 
         mActivityHomeSinglecartodayBack.setOnClickListener(this);
@@ -365,7 +371,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
             @Override
             public void onClick(ColorDialog dialog) {
                 dialog.cancel();
-                SharedPreferences preferences=MyApplication.getContext().getSharedPreferences("loginToken", Context.MODE_PRIVATE);
+                SharedPreferences preferences = MyApplication.getContext().getSharedPreferences("loginToken", Context.MODE_PRIVATE);
                 preferences.edit().clear().commit();
                 Intent intent = new Intent(SingleCarTodayActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -374,6 +380,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
             }
         }).show();
     }
+
     //加载到了数据
     @Override
     public void newDatas(HomeSingleCarTodayBean data) {
@@ -382,13 +389,6 @@ public class SingleCarTodayActivity extends BaseActivity implements
 
         if (data.getRes_code().equals("-2")) {
             showPopupWindowLogin();
-//            ToastUtil.startShort(SingleCarTodayActivity.this, Constant.TOKEN_OUT_OF_TIME);
-//            Intent intent = new Intent(MyApplication.getContext(), LoginActivity.class);
-//            intent.putExtra("token_out_of_time", "token_out_of_time");
-//            startActivity(intent);
-//MyApplication.getInstance().exit();
-//
-
         } else {
 
             // TODO: 2017/2/13/013
@@ -460,11 +460,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 // 设置所有maker显示在当前可视区域地图中
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
                 for (int i = 0; i < listLine.size(); i++) {
-//            if (i % 100 == 0) {
-//                Log.d("测试数据111", "DD");
                     builder.include(listLine.get(i));
-//            }
-
                 }
                 LatLngBounds build = builder.build();
                 aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(build, 10));
@@ -788,7 +784,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 if (!formatAddress.contains("市")) {
                     formatAddress = "Sorry,暂时无法解析此地址！";
 
-                        textView.setText(addressName.toString() + "\n" + formatAddress);
+                    textView.setText(addressName.toString() + "\n" + formatAddress);
 
                 } else {
                     if (formatAddress.length() > 23) {
@@ -840,7 +836,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
         Date date = new Date(vehicle_exception_timestamp);
         String format = sdf.format(date);
         addressName = new StringBuilder(format + "    " + vehicle_exception_code +
-                "    扣" + resExpectionBean.getScore()+"分");
+                "    扣" + resExpectionBean.getScore() + "分");
 //        aMap.clear();
 
         /**
@@ -890,5 +886,87 @@ public class SingleCarTodayActivity extends BaseActivity implements
         }
     }
 
+    @Override
+    public void onMapClick(LatLng latLng) {
 
+        double latitude = latLng.latitude;
+        double longitude = latLng.longitude;
+        for (int i = 0; i < mMData.getRes_fenbu().size(); i++) {
+            HomeSingleCarTodayBean.ResFenbuBean resFenbuBean = mMData.getRes_fenbu().get(i);
+            if (resFenbuBean.getLatitude() >= latitude - 0.01f &&
+                    resFenbuBean.getLatitude() <= latitude + 0.01f
+                    && resFenbuBean.getLongitude() >= longitude - 0.01f
+                    && resFenbuBean.getLongitude() <= longitude + 0.01f) {
+
+                if (markerMiddleUp != null) {
+                    markerMiddleUp.remove();
+                }
+                if (markerMiddleDown != null) {
+                    markerMiddleDown.remove();
+                }
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                Date date = new Date(resFenbuBean.getDt());
+                String format = sdf.format(date);
+                TextView textView = new TextView(getApplicationContext());
+                ToastUtil.startShort(SingleCarTodayActivity.this, +resFenbuBean.getDt()
+                        + "时间");
+                markOptiopnsMiddleUp = new MarkerOptions();
+                LatLng latLng1 = new LatLng(resFenbuBean.getLatitude(), resFenbuBean.getLongitude());
+                markOptiopnsMiddleUp.position(latLng1)
+                        .anchor(0.5f, 1.5f)
+                        .setFlat(true);
+                textView.setText("时间: "+format+"分");
+                textView.setGravity(Gravity.CENTER);
+                textView.setTextColor(Color.BLACK);
+                textView.setBackgroundResource(R.drawable.custom_info_bubble);
+                markOptiopnsMiddleUp.icon(BitmapDescriptorFactory.fromView(textView));
+                markerMiddleUp = aMap.addMarker(markOptiopnsMiddleUp);
+
+                markOptiopnsMiddleDown = new MarkerOptions();
+                LatLng latLng3 = new LatLng(resFenbuBean.getLatitude(), resFenbuBean.getLongitude());
+                markOptiopnsMiddleDown.position(latLng3)
+                        .anchor(0.5f, 0.5f)
+                        .setFlat(true);
+                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin));
+                markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
+
+//                //
+//                for (int j = 0; j < mMData.getRes_expection().size(); j++) {
+//                    HomeSingleCarTodayBean.ResExpectionBean resExpectionBean = mMData.getRes_expection().get(j);
+//                    if ((resFenbuBean.getLatitude()+"").equals(resExpectionBean.getLatitude()+"")
+//                            && (resExpectionBean.getLongitude()+"").equals(resFenbuBean.getLongitude()+"")) {
+//                        mActivityHomeSinglecartodayListview.setSelection(i);
+//                    }
+//                }
+
+return;
+            }
+        }
+    }
+
+
+//    @Override
+//    public void onPolylineClick(Polyline polyline) {
+//
+//                LatLng latLng = polyline.getPoints().get(100);
+//                double latitude = latLng.latitude;
+//                double longitude = latLng.longitude;
+//
+//                for (int i = 0; i < mMData.getRes_fenbu().size(); i++) {
+//                    HomeSingleCarTodayBean.ResFenbuBean resFenbuBean = mMData.getRes_fenbu().get(i);
+//                    if (resFenbuBean.getLatitude() == latitude && resFenbuBean.getLongitude() == longitude) {
+//                        ToastUtil.startShort(SingleCarTodayActivity.this, +resFenbuBean.getDt() + "时间");
+//                        markOptiopnsMiddleUp = new MarkerOptions();
+//                        LatLng latLng1 = new LatLng(resFenbuBean.getLatitude(), resFenbuBean.getLongitude());
+//                        LatLng latLng2 = new LatLng(30.832445, 121.929145);
+//                        markOptiopnsMiddleUp.position(latLng1)
+//                                .anchor(0.5f, 0.5f)
+//                                .setFlat(true);
+//                        markOptiopnsMiddleUp.icon(BitmapDescriptorFactory.fromResource(R.drawable.attation));
+//                        aMap.addMarker(markOptiopnsMiddleUp);
+//
+//                    }
+//                }
+//
+//    }
 }
