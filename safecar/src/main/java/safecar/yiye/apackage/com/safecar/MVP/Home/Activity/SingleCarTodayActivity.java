@@ -141,6 +141,8 @@ public class SingleCarTodayActivity extends BaseActivity implements
     private ProgressDialog progDialog = null;
 
     public static final int REQUEST_ALL_PERMISSION_HOME_SINGLE_A = 103;
+    //设置默认的地标是绿色的
+    private boolean isRedLocationMark=false;
 
     private PermissionListener listener = new PermissionListener() {
         @Override
@@ -779,7 +781,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 markOptiopns.position(latLngww)
                         .icon(BitmapDescriptorFactory
                                 .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))    // 将Marker设置为贴地显示，可以双指下拉看效果
-                        .anchor(0.5f, 1.5f)
+                        .anchor(0.5f, 1.3f)
                         .setFlat(true);
 //                TextView textView = new TextView(getApplicationContext());
 //                String text = addressName.toString() + formatAddress;
@@ -812,9 +814,14 @@ public class SingleCarTodayActivity extends BaseActivity implements
 
                 markOptiopnsMiddleDown = new MarkerOptions();
                 markOptiopnsMiddleDown.position(latLngww)
-                        .anchor(0.5f, 0.5f)
+                        .anchor(0.5f, 1.0f)
                         .setFlat(true);
-                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin));
+                if (isRedLocationMark) {
+                    markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_red));
+                } else {
+                    markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_blue));
+                }
+
                 markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
 
                 jumpPoint(markerSingleDot, latLngww);
@@ -852,6 +859,13 @@ public class SingleCarTodayActivity extends BaseActivity implements
         addressName = new StringBuilder(format + "    " + vehicle_exception_code +
                 "    扣" + resExpectionBean.getScore() + "分");
 //        aMap.clear();
+        //当分数为0 的时候， 表示扣分已达到上限，显示红色的地标图片
+        if (resExpectionBean.getScore().equals("0")) {
+            isRedLocationMark = true;
+        } else {
+            isRedLocationMark = false;
+        }
+
 
         /**
          * 当点击条目的时候
@@ -877,6 +891,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
 
         latLonPoint = new LatLonPoint(latitude, longitude);
         latLngww = new LatLng(latitude, longitude);
+
         initGeocodeSearch();
     }
 
@@ -911,7 +926,6 @@ public class SingleCarTodayActivity extends BaseActivity implements
                     resFenbuBean.getLatitude() <= latitude + 0.02f
                     && resFenbuBean.getLongitude() >= longitude - 0.02f
                     && resFenbuBean.getLongitude() <= longitude + 0.02f) {
-
                 if (markerMiddleUp != null) {
                     markerMiddleUp.remove();
                 }
@@ -930,9 +944,9 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 markOptiopnsMiddleUp = new MarkerOptions();
                 LatLng latLng1 = new LatLng(resFenbuBean.getLatitude(), resFenbuBean.getLongitude());
                 markOptiopnsMiddleUp.position(latLng1)
-                        .anchor(0.5f, 1.5f)
+                        .anchor(0.5f, 1.3f)
                         .setFlat(true);
-                textView.setText("时间: "+format+"分");
+                textView.setText(format);
                 textView.setGravity(Gravity.CENTER);
                 textView.setTextColor(Color.BLACK);
                 textView.setBackgroundResource(R.drawable.custom_info_bubble);
@@ -942,21 +956,12 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 markOptiopnsMiddleDown = new MarkerOptions();
                 LatLng latLng3 = new LatLng(resFenbuBean.getLatitude(), resFenbuBean.getLongitude());
                 markOptiopnsMiddleDown.position(latLng3)
-                        .anchor(0.5f, 0.5f)
+                        .anchor(0.5f, 1.0f)
                         .setFlat(true);
-                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin));
+                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_blue));
                 markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
 
-//                //
-//                for (int j = 0; j < mMData.getRes_expection().size(); j++) {
-//                    HomeSingleCarTodayBean.ResExpectionBean resExpectionBean = mMData.getRes_expection().get(j);
-//                    if ((resFenbuBean.getLatitude()+"").equals(resExpectionBean.getLatitude()+"")
-//                            && (resExpectionBean.getLongitude()+"").equals(resFenbuBean.getLongitude()+"")) {
-//                        mActivityHomeSinglecartodayListview.setSelection(i);
-//                    }
-//                }
-
-return;
+                return;
             }
         }
     }
