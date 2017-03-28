@@ -907,10 +907,10 @@ public class SingleCarTodayActivity extends BaseActivity implements
         double longitude = latLng.longitude;
         for (int i = 0; i < mMData.getRes_fenbu().size(); i++) {
             HomeSingleCarTodayBean.ResFenbuBean resFenbuBean = mMData.getRes_fenbu().get(i);
-            if (resFenbuBean.getLatitude() >= latitude - 0.01f &&
-                    resFenbuBean.getLatitude() <= latitude + 0.01f
-                    && resFenbuBean.getLongitude() >= longitude - 0.01f
-                    && resFenbuBean.getLongitude() <= longitude + 0.01f) {
+            if (resFenbuBean.getLatitude() >= latitude - 0.02f &&
+                    resFenbuBean.getLatitude() <= latitude + 0.02f
+                    && resFenbuBean.getLongitude() >= longitude - 0.02f
+                    && resFenbuBean.getLongitude() <= longitude + 0.02f) {
 
                 if (markerMiddleUp != null) {
                     markerMiddleUp.remove();
