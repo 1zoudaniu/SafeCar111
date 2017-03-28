@@ -915,7 +915,6 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 if (markerMiddleUp != null) {
                     markerMiddleUp.remove();
                 }
-
                 if (markerMiddleDown != null) {
                     markerMiddleDown.remove();
                 }
