@@ -763,6 +763,12 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 if (markerSingleDot != null) {
                     markerSingleDot.remove();
                 }
+                if (markerMiddleDown != null) {
+                    markerMiddleDown.remove();
+                }
+                if (markerMiddleUp != null) {
+                    markerMiddleUp.remove();
+                }
 
 //                aMap.clear();
                 String formatAddress = result.getRegeocodeAddress().getFormatAddress();
@@ -773,6 +779,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 markOptiopns.position(latLngww)
                         .icon(BitmapDescriptorFactory
                                 .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))    // 将Marker设置为贴地显示，可以双指下拉看效果
+                        .anchor(0.5f, 1.5f)
                         .setFlat(true);
 //                TextView textView = new TextView(getApplicationContext());
 //                String text = addressName.toString() + formatAddress;
@@ -802,6 +809,13 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 markOptiopns.icon(BitmapDescriptorFactory.fromView(textView));
 
                 markerSingleDot = aMap.addMarker(markOptiopns);
+
+                markOptiopnsMiddleDown = new MarkerOptions();
+                markOptiopnsMiddleDown.position(latLngww)
+                        .anchor(0.5f, 0.5f)
+                        .setFlat(true);
+                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin));
+                markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
 
                 jumpPoint(markerSingleDot, latLngww);
 
@@ -908,8 +922,8 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 Date date = new Date(resFenbuBean.getDt());
                 String format = sdf.format(date);
                 TextView textView = new TextView(getApplicationContext());
-                ToastUtil.startShort(SingleCarTodayActivity.this, +resFenbuBean.getDt()
-                        + "时间");
+//                ToastUtil.startShort(SingleCarTodayActivity.this, +resFenbuBean.getDt()
+//                        + "时间");
                 markOptiopnsMiddleUp = new MarkerOptions();
                 LatLng latLng1 = new LatLng(resFenbuBean.getLatitude(), resFenbuBean.getLongitude());
                 markOptiopnsMiddleUp.position(latLng1)

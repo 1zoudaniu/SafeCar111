@@ -102,6 +102,8 @@ public class DetailNowFragment extends BaseFragment implements
     private ProgressDialog progDialog = null;
     private String BaseToken;
     private String tel;
+    private MarkerOptions markOptiopnsMiddleDown;
+    private Marker markerMiddleDown;
 
     public DetailNowFragment() {
     }
@@ -318,6 +320,7 @@ public class DetailNowFragment extends BaseFragment implements
 
     @Override
     public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
+
         if (rCode == 1000) {
             if (result != null && result.getRegeocodeAddress() != null
                     && result.getRegeocodeAddress().getFormatAddress() != null) {
@@ -333,6 +336,7 @@ public class DetailNowFragment extends BaseFragment implements
                 MarkerOptions markOptiopns = new MarkerOptions();
                 markOptiopns.position(latLng).icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))    // 将Marker设置为贴地显示，可以双指下拉看效果
+                        .anchor(0.5f, 1.5f)
                         .setFlat(true);
                 TextView textView = new TextView(getContext());
                 if (formatAddress.length() > 23) {
@@ -351,6 +355,18 @@ public class DetailNowFragment extends BaseFragment implements
                 Marker marker1 = aMap_frame.addMarker(markOptiopns);
 
                 marker1.setPosition(AMapUtil.convertToLatLng(latLonPoint));
+                marker1.setAnchor(0.5f, 1.5f);
+
+
+
+                markOptiopnsMiddleDown = new MarkerOptions();
+                markOptiopnsMiddleDown.position(latLng)
+                        .anchor(0.5f, 0.5f)
+                        .setFlat(true);
+                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin));
+                markerMiddleDown = aMap_frame.addMarker(markOptiopnsMiddleDown);
+
+
 
                 jumpPoint(marker1, latLng);
 
@@ -425,7 +441,7 @@ public class DetailNowFragment extends BaseFragment implements
             @Override
             public void onClick(ColorDialog dialog) {
                 dialog.cancel();
-                SharedPreferences preferences=getActivity().getSharedPreferences("loginToken", Context.MODE_PRIVATE);
+                SharedPreferences preferences = getActivity().getSharedPreferences("loginToken", Context.MODE_PRIVATE);
                 preferences.edit().clear().commit();
                 Intent intent = new Intent(MyApplication.getContext(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -435,6 +451,7 @@ public class DetailNowFragment extends BaseFragment implements
             }
         }).show();
     }
+
     @Override
     public void newDatas(DetailNowBean data) {
         if (data.getRes_code().equals("-2")) {
