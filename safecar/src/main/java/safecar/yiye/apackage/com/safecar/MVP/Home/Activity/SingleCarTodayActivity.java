@@ -921,7 +921,6 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 if (markerSingleDot != null) {
                     markerSingleDot.remove();
                 }
-
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 Date date = new Date(resFenbuBean.getDt());
                 String format = sdf.format(date);
