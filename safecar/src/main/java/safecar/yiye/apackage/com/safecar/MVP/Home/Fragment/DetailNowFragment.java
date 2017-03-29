@@ -355,15 +355,15 @@ public class DetailNowFragment extends BaseFragment implements
                 Marker marker1 = aMap_frame.addMarker(markOptiopns);
 
                 marker1.setPosition(AMapUtil.convertToLatLng(latLonPoint));
-                marker1.setAnchor(0.5f, 1.5f);
+                marker1.setAnchor(0.5f, 1.3f);
 
 
 
                 markOptiopnsMiddleDown = new MarkerOptions();
                 markOptiopnsMiddleDown.position(latLng)
-                        .anchor(0.5f, 0.5f)
+                        .anchor(0.5f, 1.0f)
                         .setFlat(true);
-                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin));
+                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_blue));
                 markerMiddleDown = aMap_frame.addMarker(markOptiopnsMiddleDown);
 
 

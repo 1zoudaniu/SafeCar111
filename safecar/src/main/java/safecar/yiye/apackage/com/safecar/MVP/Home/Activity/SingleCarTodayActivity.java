@@ -141,8 +141,6 @@ public class SingleCarTodayActivity extends BaseActivity implements
     private ProgressDialog progDialog = null;
 
     public static final int REQUEST_ALL_PERMISSION_HOME_SINGLE_A = 103;
-    //设置默认的地标是绿色的
-    private boolean isRedLocationMark=false;
 
     private PermissionListener listener = new PermissionListener() {
         @Override
@@ -204,7 +202,6 @@ public class SingleCarTodayActivity extends BaseActivity implements
     @Override
     protected void loadViewLayout() {
         setContentView(R.layout.activity_single_car_today);
-
 
         SharedPreferences preferences = getSharedPreferences("loginToken", Context.MODE_PRIVATE);
         BaseToken = preferences.getString("token", "");
@@ -334,6 +331,8 @@ public class SingleCarTodayActivity extends BaseActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("时间测试SingleCar", "onCreate");
+
         super.onCreate(savedInstanceState);
 
         // TODO: add setContentView(...) invocation
@@ -387,7 +386,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
     @Override
     public void newDatas(HomeSingleCarTodayBean data) {
 
-        Log.d("ddd", "dddd");
+        Log.d("时间测试activity", "newDatas");
 
         if (data.getRes_code().equals("-2")) {
             showPopupWindowLogin();
@@ -466,7 +465,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 }
                 LatLngBounds build = builder.build();
                 aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(build, 10));
-
+                Log.d("时间测试activity", "完成");
             } else {
                 Log.d("测试", "没有轨迹点");
             }
@@ -816,11 +815,8 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 markOptiopnsMiddleDown.position(latLngww)
                         .anchor(0.5f, 1.0f)
                         .setFlat(true);
-                if (isRedLocationMark) {
                     markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_red));
-                } else {
-                    markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_blue));
-                }
+
 
                 markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
 
@@ -858,13 +854,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
         String format = sdf.format(date);
         addressName = new StringBuilder(format + "    " + vehicle_exception_code +
                 "    扣" + resExpectionBean.getScore() + "分");
-//        aMap.clear();
-        //当分数为0 的时候， 表示扣分已达到上限，显示红色的地标图片
-        if (resExpectionBean.getScore().equals("0")) {
-            isRedLocationMark = true;
-        } else {
-            isRedLocationMark = false;
-        }
+
 
 
         /**
@@ -881,9 +871,6 @@ public class SingleCarTodayActivity extends BaseActivity implements
         if (latitude1 == null) {
             dismissDialog();
             return;
-//            HomeSingleCarTodayBean.ResFenbuBean resFenbuBean = mMData.getRes_fenbu().get(0);
-//            latitude = resFenbuBean.getLatitude();
-//            longitude = resFenbuBean.getLongitude();
         } else {
             latitude = Double.parseDouble(latitude1);
             longitude = Double.parseDouble(longitude1);
@@ -920,29 +907,35 @@ public class SingleCarTodayActivity extends BaseActivity implements
 
         double latitude = latLng.latitude;
         double longitude = latLng.longitude;
-        for (int i = 0; i < mMData.getRes_fenbu().size(); i++) {
-            HomeSingleCarTodayBean.ResFenbuBean resFenbuBean = mMData.getRes_fenbu().get(i);
-            if (resFenbuBean.getLatitude() >= latitude - 0.02f &&
-                    resFenbuBean.getLatitude() <= latitude + 0.02f
-                    && resFenbuBean.getLongitude() >= longitude - 0.02f
-                    && resFenbuBean.getLongitude() <= longitude + 0.02f) {
-                if (markerMiddleUp != null) {
-                    markerMiddleUp.remove();
-                }
-                if (markerMiddleDown != null) {
-                    markerMiddleDown.remove();
-                }
-                if (markerSingleDot != null) {
-                    markerSingleDot.remove();
-                }
+        for (int j = 0; j < mMData.getRes_expection().size(); j++) {
+            HomeSingleCarTodayBean.ResExpectionBean resExpectionBean = mMData.getRes_expection().get(j);
+            String longitudeYiChangString = resExpectionBean.getLongitude();
+            String latitudeYiChangString = resExpectionBean.getLatitude();
+            float longitudeYiChangFloat = Float.parseFloat(longitudeYiChangString);
+            float latitudeYiChangFloat = Float.parseFloat(latitudeYiChangString);
+            if (markerMiddleUp != null) {
+                markerMiddleUp.remove();
+            }
+            if (markerMiddleDown != null) {
+                markerMiddleDown.remove();
+            }
+            if (markerSingleDot != null) {
+                markerSingleDot.remove();
+            }
+            //在里面，就表示是异常点。显示红色地标
+            if (latitude >= latitudeYiChangFloat - 0.005f &&
+                    latitude <= latitudeYiChangFloat + 0.005f
+                    && longitude >= longitudeYiChangFloat - 0.005f
+                    && longitude <= longitudeYiChangFloat + 0.005f
+                    ) {
+
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                Date date = new Date(resFenbuBean.getDt());
+                Date date = new Date(resExpectionBean.getData_date());
                 String format = sdf.format(date);
                 TextView textView = new TextView(getApplicationContext());
-//                ToastUtil.startShort(SingleCarTodayActivity.this, +resFenbuBean.getDt()
-//                        + "时间");
                 markOptiopnsMiddleUp = new MarkerOptions();
-                LatLng latLng1 = new LatLng(resFenbuBean.getLatitude(), resFenbuBean.getLongitude());
+                LatLng latLng1 = new LatLng(Float.parseFloat(resExpectionBean.getLatitude()),
+                        Float.parseFloat(resExpectionBean.getLongitude()));
                 markOptiopnsMiddleUp.position(latLng1)
                         .anchor(0.5f, 1.3f)
                         .setFlat(true);
@@ -953,17 +946,56 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 markOptiopnsMiddleUp.icon(BitmapDescriptorFactory.fromView(textView));
                 markerMiddleUp = aMap.addMarker(markOptiopnsMiddleUp);
 
+
                 markOptiopnsMiddleDown = new MarkerOptions();
-                LatLng latLng3 = new LatLng(resFenbuBean.getLatitude(), resFenbuBean.getLongitude());
-                markOptiopnsMiddleDown.position(latLng3)
+                markOptiopnsMiddleDown.position(latLng1)
                         .anchor(0.5f, 1.0f)
                         .setFlat(true);
-                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_blue));
+                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_red));
                 markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
-
                 return;
+//不是异常点，再判断是不是轨迹点，是就显示蓝色，否则点击就不显示
+            } else {
+
+                for (int i = 0; i < mMData.getRes_fenbu().size(); i++) {
+                    HomeSingleCarTodayBean.ResFenbuBean resFenbuBean = mMData.getRes_fenbu().get(i);
+                    if (latitude >= resFenbuBean.getLatitude() - 0.005f &&
+                            latitude <= resFenbuBean.getLatitude() + 0.005f
+                            && longitude >= resFenbuBean.getLongitude() - 0.005f
+                            && longitude <= resFenbuBean.getLongitude() + 0.005f) {
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                        Date date = new Date(resFenbuBean.getDt());
+                        String format = sdf.format(date);
+                        TextView textView = new TextView(getApplicationContext());
+                        markOptiopnsMiddleUp = new MarkerOptions();
+                        LatLng latLng1 = new LatLng(resFenbuBean.getLatitude(),
+                                resFenbuBean.getLongitude());
+                        markOptiopnsMiddleUp.position(latLng1)
+                                .anchor(0.5f, 1.3f)
+                                .setFlat(true);
+                        textView.setText(format);
+                        textView.setGravity(Gravity.CENTER);
+                        textView.setTextColor(Color.BLACK);
+                        textView.setBackgroundResource(R.drawable.custom_info_bubble);
+                        markOptiopnsMiddleUp.icon(BitmapDescriptorFactory.fromView(textView));
+                        markerMiddleUp = aMap.addMarker(markOptiopnsMiddleUp);
+
+
+                        markOptiopnsMiddleDown = new MarkerOptions();
+                        markOptiopnsMiddleDown.position(latLng1)
+                                .anchor(0.5f, 1.0f)
+                                .setFlat(true);
+                        markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_blue));
+                        markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
+                        return;
+                    } else {
+
+                    }
+                }
             }
         }
+
     }
 
 

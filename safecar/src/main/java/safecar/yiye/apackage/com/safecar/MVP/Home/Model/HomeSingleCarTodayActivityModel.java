@@ -37,9 +37,16 @@ public class HomeSingleCarTodayActivityModel {
             @Override
             public void onNext(HomeSingleCarTodayBean homeHomeCarBeen) {
                 // TODO: 2017/2/13/013
-                Log.d("测试数据", "获取到数据了  时间是:" + System.currentTimeMillis());
-                Log.d("测试数据", "获取到数据了  时间是:" + System.currentTimeMillis());
-
+                Log.d("时间测试model", "获取到数据了");
+//
+//
+//                List<HomeSingleCarTodayBean.ResFenbuBean> res_fenbu = homeHomeCarBeen.getRes_fenbu();
+//                List<HomeSingleCarTodayBean.ResFenbuBean> res_fenbu1 = new ArrayList<HomeSingleCarTodayBean.ResFenbuBean>();
+//                for (int i = 0; i < 10000; i++) {
+//                    res_fenbu1.add(res_fenbu.get(i % res_fenbu.size()));
+//                }
+//                homeHomeCarBeen.setRes_fenbu(res_fenbu1);
+//                Log.d("时间测试model", "数据点是："+homeHomeCarBeen.getRes_fenbu().size());
                 if (homeHomeCarBeen.getRes_code().equals("-2")) {
 
                 } else {
@@ -60,6 +67,7 @@ public class HomeSingleCarTodayActivityModel {
                 }
 
                 listener.onSuccess(homeHomeCarBeen);
+                Log.d("时间测试model", "数据更改时间完成");
             }
 
         });

@@ -22,6 +22,7 @@ public class HomeSingleCarTodayActivityPresenter implements OnLoadDataListListen
 
     public HomeSingleCarTodayActivityPresenter(HomeSingleCarTodayActivityView mView) {
         this.mView = mView;
+        Log.d("时间测试presenter", "网络请求开始");
         this.mModel = new HomeSingleCarTodayActivityModel();
         mView.showProgress();
     }
