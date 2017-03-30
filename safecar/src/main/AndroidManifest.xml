@@ -3,9 +3,8 @@
     package="safecar.yiye.apackage.com.safecar">
 
     <uses-permission android:name="android.permission.READ_LOGS" />
-    <!--保存资源到SD卡-->
+    <!-- 保存资源到SD卡 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -32,65 +31,73 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeMainActivity">
 
-        <!--高德地图的配置-->
+        <!-- 高德地图的配置 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="31ebab4b055b5ee66331482471d6bc17" />
 
+        <!-- 欢迎界面 -->
+        <!-- <activity -->
+        <!-- android:name=".MVP.SplashActivity" -->
+        <!-- android:theme="@style/SplashTheme"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
 
-        <!--欢迎界面-->
-        <activity
-            android:name=".MVP.SplashActivity"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
-        <!--主界面的antivity-->
+        <!-- 主界面的antivity -->
         <activity
             android:name=".MVP.Home.HomeTabActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppThemeMainActivity">
-
-        </activity>
+            android:theme="@style/AppThemeMainActivity"></activity>
 
         <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
         <service android:name="com.amap.api.location.APSService" />
 
-        <!--mob的短信验证-->
+        <!-- mob的短信验证 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
-        <!--登录界面-->
+        <!-- 登录界面 -->
         <activity
             android:name=".MVP.LoginActivity"
-            android:theme="@style/loginTheme"></activity>
+            android:theme="@style/loginTheme" />
 
-        <!--轨迹点界面-->
+        <!-- 轨迹点界面 -->
         <activity android:name=".MVP.Home.Activity.SingleCarTodayActivity" />
 
-        <!--用户中心界面-->
+        <!-- 用户中心界面 -->
         <activity android:name=".MVP.Home.Activity.PersonInfoActivity" />
 
-        <!--测试界面-->
-        <activity android:name=".MVP.Home.Activity.TestActivity">
+        <!-- &lt;!&ndash;测试界面&ndash;&gt; -->
+        <!-- <activity android:name=".MVP.Home.Activity.TestActivity"> -->
 
+
+        <!-- </activity> -->
+
+        <activity
+            android:name=".MVP.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
-        <!--历史分数分布趋势-->
+        <!-- 历史分数分布趋势 -->
         <activity android:name=".MVP.Home.Activity.HistoryCarScoreActivity" />
 
-
-        <!--版本升级的Bugly配置-->
+        <!-- 版本升级的Bugly配置 -->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:theme="@android:style/Theme.Translucent" />
-        <!--版本升级的Bugly配置-->
+        <!-- 版本升级的Bugly配置 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="safecar.yiye.apackage.com.safecar.fileProvider"

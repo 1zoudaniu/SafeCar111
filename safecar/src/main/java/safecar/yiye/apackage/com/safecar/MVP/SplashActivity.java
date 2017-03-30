@@ -12,9 +12,11 @@ import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -42,17 +44,29 @@ import safecar.yiye.apackage.com.safecar.Boss.Util.SPUtils;
 public class SplashActivity extends BaseActivity {
 
     @BindView(R.id.rl_splash)
-    RelativeLayout mRlSplash;
+    ImageView mRlSplash;
     private String login_safebox;
 
     @Override
-    protected void loadViewLayout() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-//取消状态栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Log.d("测试", "oncreate");
+        ButterKnife.bind(this);
+        // 显示透明度动画
+        startAnimation();
+
+    }
+
+    @Override
+    protected void loadViewLayout() {
+        Log.d("测试", "loadViewLayout");
         setContentView(R.layout.activity_splash);
 
+        //取消状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Log.d("测试", "loadViewLayout3");
     }
 
     /**
@@ -76,25 +90,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void processLogic() {
-//        login_safebox = SPUtils.getString(SplashActivity.this, "safecar_boss_login");
-//        if (!TextUtils.isEmpty(login_safebox)) {
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    startActivity(new Intent(SplashActivity.this, HomeTabActivity.class));
-//                    finish();
-//                }
-//            }, 2000);
-//        } else {
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-//                    finish();
-//                }
-//            }, 2000);
-//        }
-
+        Log.d("测试", "processLogic");
         SharedPreferences preferences=getSharedPreferences("loginToken", Context.MODE_PRIVATE);
         String token=preferences.getString("token", "");
 
@@ -121,7 +117,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected Context getActivityContext() {
-        return this;
+        return SplashActivity.this;
     }
 
     @Override
@@ -129,17 +125,6 @@ public class SplashActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //        //取消标题
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-        // 显示透明度动画
-        startAnimation();
-
-    }
 
     @Override
     public void onRefresh() {
