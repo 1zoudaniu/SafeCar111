@@ -45,7 +45,6 @@ public class SplashActivity extends BaseActivity {
 
     @BindView(R.id.rl_splash)
     ImageView mRlSplash;
-    private String login_safebox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

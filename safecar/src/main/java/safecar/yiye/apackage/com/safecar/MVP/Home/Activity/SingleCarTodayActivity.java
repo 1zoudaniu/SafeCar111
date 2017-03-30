@@ -643,11 +643,11 @@ public class SingleCarTodayActivity extends BaseActivity implements
         float zoom = cameraPosition.zoom;
         Log.d("地图级别是", "zoom" + zoom);
         if (zoom < 7) {
-            mDiBiaoMarkZoomLevel = 0.05f;
+            mDiBiaoMarkZoomLevel = 0.07f;
         } else if (zoom >= 7 && zoom <= 9) {
-            mDiBiaoMarkZoomLevel = 0.03f;
+            mDiBiaoMarkZoomLevel = 0.05f;
         } else if (zoom > 9 && zoom < 13) {
-            mDiBiaoMarkZoomLevel = 0.015f;
+            mDiBiaoMarkZoomLevel = 0.02f;
         } else if (zoom >= 13 && zoom < 17) {
             mDiBiaoMarkZoomLevel = 0.005f;
         } else {
@@ -979,40 +979,40 @@ public class SingleCarTodayActivity extends BaseActivity implements
             if (markerSingleDot != null) {
                 markerSingleDot.remove();
             }
-            //在里面，就表示是异常点。显示红色地标
-            if (latitude >= latitudeYiChangFloat - mDiBiaoMarkZoomLevel &&
-                    latitude <= latitudeYiChangFloat + mDiBiaoMarkZoomLevel
-                    && longitude >= longitudeYiChangFloat - mDiBiaoMarkZoomLevel
-                    && longitude <= longitudeYiChangFloat + mDiBiaoMarkZoomLevel
-                    ) {
-
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                Date date = new Date(resExpectionBean.getData_date());
-                String format = sdf.format(date);
-                TextView textView = new TextView(getApplicationContext());
-                markOptiopnsMiddleUp = new MarkerOptions();
-                LatLng latLng1 = new LatLng(Float.parseFloat(resExpectionBean.getLatitude()),
-                        Float.parseFloat(resExpectionBean.getLongitude()));
-                markOptiopnsMiddleUp.position(latLng1)
-                        .anchor(0.5f, 1.3f)
-                        .setFlat(true);
-                textView.setText(format);
-                textView.setGravity(Gravity.CENTER);
-                textView.setTextColor(Color.BLACK);
-                textView.setBackgroundResource(R.drawable.custom_info_bubble);
-                markOptiopnsMiddleUp.icon(BitmapDescriptorFactory.fromView(textView));
-                markerMiddleUp = aMap.addMarker(markOptiopnsMiddleUp);
-
-
-                markOptiopnsMiddleDown = new MarkerOptions();
-                markOptiopnsMiddleDown.position(latLng1)
-                        .anchor(0.5f, 1.0f)
-                        .setFlat(true);
-                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_red));
-                markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
-                return;
-//不是异常点，再判断是不是轨迹点，是就显示蓝色，否则点击就不显示
-            } else {
+//            //在里面，就表示是异常点。显示红色地标
+//            if (latitude >= latitudeYiChangFloat - mDiBiaoMarkZoomLevel &&
+//                    latitude <= latitudeYiChangFloat + mDiBiaoMarkZoomLevel
+//                    && longitude >= longitudeYiChangFloat - mDiBiaoMarkZoomLevel
+//                    && longitude <= longitudeYiChangFloat + mDiBiaoMarkZoomLevel
+//                    ) {
+//
+//                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//                Date date = new Date(resExpectionBean.getData_date());
+//                String format = sdf.format(date);
+//                TextView textView = new TextView(getApplicationContext());
+//                markOptiopnsMiddleUp = new MarkerOptions();
+//                LatLng latLng1 = new LatLng(Float.parseFloat(resExpectionBean.getLatitude()),
+//                        Float.parseFloat(resExpectionBean.getLongitude()));
+//                markOptiopnsMiddleUp.position(latLng1)
+//                        .anchor(0.5f, 1.3f)
+//                        .setFlat(true);
+//                textView.setText(format);
+//                textView.setGravity(Gravity.CENTER);
+//                textView.setTextColor(Color.BLACK);
+//                textView.setBackgroundResource(R.drawable.custom_info_bubble);
+//                markOptiopnsMiddleUp.icon(BitmapDescriptorFactory.fromView(textView));
+//                markerMiddleUp = aMap.addMarker(markOptiopnsMiddleUp);
+//
+//
+//                markOptiopnsMiddleDown = new MarkerOptions();
+//                markOptiopnsMiddleDown.position(latLng1)
+//                        .anchor(0.5f, 1.0f)
+//                        .setFlat(true);
+//                markOptiopnsMiddleDown.icon(BitmapDescriptorFactory.fromResource(R.drawable.purple_pin_red));
+//                markerMiddleDown = aMap.addMarker(markOptiopnsMiddleDown);
+//                return;
+////不是异常点，再判断是不是轨迹点，是就显示蓝色，否则点击就不显示
+//            } else {
 
                 for (int i = 0; i < mMData.getRes_fenbu().size(); i++) {
                     HomeSingleCarTodayBean.ResFenbuBean resFenbuBean = mMData.getRes_fenbu().get(i);
@@ -1049,7 +1049,7 @@ public class SingleCarTodayActivity extends BaseActivity implements
                     } else {
 
                     }
-                }
+//                }
             }
         }
 
