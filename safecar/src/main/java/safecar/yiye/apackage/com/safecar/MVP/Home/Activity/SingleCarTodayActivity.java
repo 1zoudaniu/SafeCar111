@@ -642,10 +642,12 @@ public class SingleCarTodayActivity extends BaseActivity implements
     public void onCameraChange(CameraPosition cameraPosition) {
         float zoom = cameraPosition.zoom;
         Log.d("地图级别是", "zoom" + zoom);
-        if (zoom <= 9) {
-            mDiBiaoMarkZoomLevel = 0.02f;
+        if (zoom < 7) {
+            mDiBiaoMarkZoomLevel = 0.05f;
+        } else if (zoom >= 7 && zoom <= 9) {
+            mDiBiaoMarkZoomLevel = 0.03f;
         } else if (zoom > 9 && zoom < 13) {
-            mDiBiaoMarkZoomLevel = 0.01f;
+            mDiBiaoMarkZoomLevel = 0.015f;
         } else if (zoom >= 13 && zoom < 17) {
             mDiBiaoMarkZoomLevel = 0.005f;
         } else {
