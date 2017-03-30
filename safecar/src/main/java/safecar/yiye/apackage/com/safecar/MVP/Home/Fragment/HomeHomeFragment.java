@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.RectF;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,9 +57,6 @@ import safecar.yiye.apackage.com.safecar.Widget.Dialog.ColorDialog;
 import safecar.yiye.apackage.com.safecar.Widget.DotCircularRingView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeHomeFragment extends BaseFragment implements
         HomeHomeFragmentView,
         SpringView.OnFreshListener,

@@ -40,6 +40,7 @@ import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.Projection;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.AMapGestureListener;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
@@ -298,6 +299,48 @@ public class SingleCarTodayActivity extends BaseActivity implements
         aMap.setOnCameraChangeListener(this);
         aMap.setOnPOIClickListener(this);
         aMap.setOnMapClickListener(this);
+
+        aMap.setAMapGestureListener(new AMapGestureListener() {
+            @Override
+            public void onDoubleTap(float v, float v1) {
+
+            }
+
+            @Override
+            public void onSingleTap(float v, float v1) {
+
+            }
+
+            @Override
+            public void onFling(float v, float v1) {
+
+            }
+
+            @Override
+            public void onScroll(float v, float v1) {
+
+            }
+
+            @Override
+            public void onLongPress(float v, float v1) {
+
+            }
+
+            @Override
+            public void onDown(float v, float v1) {
+
+            }
+
+            @Override
+            public void onUp(float v, float v1) {
+
+            }
+
+            @Override
+            public void onMapStable() {
+
+            }
+        });
         progDialog = new ProgressDialog(this);
 
         mActivityHomeSinglecartodayBack.setOnClickListener(this);
@@ -594,8 +637,20 @@ public class SingleCarTodayActivity extends BaseActivity implements
 //        aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(build, 10));
     }
 
+    private Float mDiBiaoMarkZoomLevel = 0.01f; 
     @Override
     public void onCameraChange(CameraPosition cameraPosition) {
+        float zoom = cameraPosition.zoom;
+        Log.d("地图级别是", "zoom" + zoom);
+        if (zoom <= 9) {
+            mDiBiaoMarkZoomLevel = 0.02f;
+        } else if (zoom > 9 && zoom < 13) {
+            mDiBiaoMarkZoomLevel = 0.01f;
+        } else if (zoom >= 13 && zoom < 17) {
+            mDiBiaoMarkZoomLevel = 0.005f;
+        } else {
+            mDiBiaoMarkZoomLevel = 0.0005f;
+        } 
     }
 
     @Override
@@ -923,10 +978,10 @@ public class SingleCarTodayActivity extends BaseActivity implements
                 markerSingleDot.remove();
             }
             //在里面，就表示是异常点。显示红色地标
-            if (latitude >= latitudeYiChangFloat - 0.005f &&
-                    latitude <= latitudeYiChangFloat + 0.005f
-                    && longitude >= longitudeYiChangFloat - 0.005f
-                    && longitude <= longitudeYiChangFloat + 0.005f
+            if (latitude >= latitudeYiChangFloat - mDiBiaoMarkZoomLevel &&
+                    latitude <= latitudeYiChangFloat + mDiBiaoMarkZoomLevel
+                    && longitude >= longitudeYiChangFloat - mDiBiaoMarkZoomLevel
+                    && longitude <= longitudeYiChangFloat + mDiBiaoMarkZoomLevel
                     ) {
 
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -959,10 +1014,10 @@ public class SingleCarTodayActivity extends BaseActivity implements
 
                 for (int i = 0; i < mMData.getRes_fenbu().size(); i++) {
                     HomeSingleCarTodayBean.ResFenbuBean resFenbuBean = mMData.getRes_fenbu().get(i);
-                    if (latitude >= resFenbuBean.getLatitude() - 0.005f &&
-                            latitude <= resFenbuBean.getLatitude() + 0.005f
-                            && longitude >= resFenbuBean.getLongitude() - 0.005f
-                            && longitude <= resFenbuBean.getLongitude() + 0.005f) {
+                    if (latitude >= resFenbuBean.getLatitude() - mDiBiaoMarkZoomLevel &&
+                            latitude <= resFenbuBean.getLatitude() + mDiBiaoMarkZoomLevel
+                            && longitude >= resFenbuBean.getLongitude() - mDiBiaoMarkZoomLevel
+                            && longitude <= resFenbuBean.getLongitude() + mDiBiaoMarkZoomLevel) {
 
                         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                         Date date = new Date(resFenbuBean.getDt());
