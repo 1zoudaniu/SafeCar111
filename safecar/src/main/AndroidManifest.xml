@@ -74,20 +74,25 @@
         <!-- 用户中心界面 -->
         <activity android:name=".MVP.Home.Activity.PersonInfoActivity" />
 
-        <!-- &lt;!&ndash;测试界面&ndash;&gt; -->
-        <!-- <activity android:name=".MVP.Home.Activity.TestActivity"> -->
+         <!--测试界面-->
+         <activity android:name=".MVP.Home.Activity.TestActivity">
 
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
 
-        <!-- </activity> -->
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
 
+        <activity android:name=".Permission.TestSplashActivity"
+            android:theme="@style/SplashTheme">
+
+        </activity>
         <activity
+
             android:name=".MVP.SplashActivity"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- 历史分数分布趋势 -->

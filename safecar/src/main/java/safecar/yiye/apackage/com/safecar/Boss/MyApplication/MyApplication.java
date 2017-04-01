@@ -1,8 +1,10 @@
 package safecar.yiye.apackage.com.safecar.Boss.MyApplication;
 
 import android.app.Activity;
-import android.app.Application;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +13,13 @@ import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.util.FileDownloadHelper;
 import com.xiaochao.lcrapiddeveloplibrary.Exception.core.Recovery;
 
+
+import org.yapp.core.Application;
+import org.yapp.utils.Callback;
+import org.yapp.utils.Toast;
+import org.yapp.y;
+
+import java.io.File;
 import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +27,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import safecar.yiye.apackage.com.safecar.MVP.Home.Activity.TestActivity;
 import safecar.yiye.apackage.com.safecar.MVP.SplashActivity;
 import safecar.yiye.apackage.com.safecar.MVP.Update.config.SystemParams;
 
@@ -266,5 +276,56 @@ public class MyApplication extends Application {
     public void clear() {
         SharedPreferences.Editor editor = sharedPrederences.edit();
         editor.clear().commit();
+    }
+
+    @Override
+    protected void init() {
+        y.setDebug(true);
+        org.yapp.utils.Log.d("App启动");
+        // 异常处理初始化
+        y.ex().init(this, new Callback.HandlerCallback<Throwable>() {
+            @Override
+            public void onHandle(Throwable ex) {
+                File log = null;
+                try {
+//                    int stackTraceSize = ex.getStackTrace().length;
+//                    String errorMsg = ex.getLocalizedMessage() + "-&&-";
+//                    for (int i = 0; i < stackTraceSize; i++) {
+//                        StackTraceElement stack = ex.getStackTrace()[i];
+//                        errorMsg += stack.toString() + "\n";
+//                        if (errorMsg.length() >= 254) {
+//                            errorMsg += (stackTraceSize - i)
+//                                    + " more...\n";
+//                            break;
+//                        }
+//                    }
+//                    log = new File(FileUtil.getCacheDir(AppConsts._LOG),
+//                            "error.log");
+//                    IOUtil.writeStr(new FileOutputStream(log), errorMsg);
+                } catch (Exception e) {
+                    org.yapp.utils.Log.e(e.getMessage(), e);
+                } finally {
+//                    log = null;
+                    if (y.ex().getStatus() == 0) {
+                        Intent intent = new Intent(MyApplication.this, TestActivity.class);
+                        PendingIntent restartIntent = PendingIntent
+                                .getActivity(MyApplication.this, 0, intent,
+                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        AlarmManager mgr = (AlarmManager) MyApplication.this
+                                .getSystemService(Context.ALARM_SERVICE);
+                        mgr.set(AlarmManager.RTC,
+                                System.currentTimeMillis() + 3000,
+                                restartIntent); // 3秒钟后重启应用
+                    }
+                    // 杀死线程
+                    android.os.Process.killProcess(android.os.Process
+                            .myPid());
+                }
+            }
+
+        });
+        if (y.ex().status() != 0) {
+            Toast.showMessageForCenterLong("无法定位或信息无法加载,请在权限管理中给应用授权。请点击\"设置\"-\"权限\"-打开所需权限");
+        }
     }
 }

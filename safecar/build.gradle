@@ -94,12 +94,14 @@ dependencies {
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile project(':DatePicker')
     compile project(path: ':jazzyListViewlibrary')
-
     // 其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.7
+
     // (注：从2.1.5开始要分开Bugly SDK和NDK的配置）
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
-//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
-
+    compile project(':permissionlibrary')
+    //权限
+    compile 'com.github.jay-y:yapp:2.0.6'
 }

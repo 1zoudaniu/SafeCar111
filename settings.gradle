@@ -1,1 +1,1 @@
-include ':safecar', ':lcrapiddeveloplibrary', ':MPChartLib', ':DatePicker', ':jazzyListViewlibrary'
+include ':safecar', ':lcrapiddeveloplibrary', ':MPChartLib', ':DatePicker', ':jazzyListViewlibrary', ':permissionlibrary'

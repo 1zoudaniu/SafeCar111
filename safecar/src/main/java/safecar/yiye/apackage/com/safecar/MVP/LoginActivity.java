@@ -81,69 +81,69 @@ public class LoginActivity extends BaseActivity {
     private static final int REQUEST_CODE_SETTING = 300;
     private TranslateAnimation animation;
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case REQUEST_CODE_SETTING: {
-                //申请权限
-                AndPermission.with(this)
-                        .requestCode(REQUEST_CODE_ALL_LOGIN)
-                        .permission(Manifest.permission.ACCESS_COARSE_LOCATION,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                Manifest.permission.READ_PHONE_STATE)
-                        .send();
-                break;
-            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        switch (requestCode) {
+//            case REQUEST_CODE_SETTING: {
+//                //申请权限
+//                AndPermission.with(this)
+//                        .requestCode(REQUEST_CODE_ALL_LOGIN)
+//                        .permission(Manifest.permission.ACCESS_COARSE_LOCATION,
+//                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                                Manifest.permission.READ_PHONE_STATE)
+//                        .send();
+//                break;
+//            }
+//        }
+//    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        /**
-         * 转给AndPermission分析结果。
-         *
-         * @param object     要接受结果的Activity、Fragment。
-         * @param requestCode  请求码。
-         * @param permissions  权限数组，一个或者多个。
-         * @param grantResults 请求结果。
-         */
-        AndPermission.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        /**
+//         * 转给AndPermission分析结果。
+//         *
+//         * @param object     要接受结果的Activity、Fragment。
+//         * @param requestCode  请求码。
+//         * @param permissions  权限数组，一个或者多个。
+//         * @param grantResults 请求结果。
+//         */
+//        AndPermission.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+//    }
 
     public static final int REQUEST_CODE_ALL_LOGIN = 500;
 
-    @PermissionYes(REQUEST_CODE_ALL_LOGIN)
-    private void getMultiYes(List<String> grantedPermissions) {
-    }
-
-    @PermissionNo(REQUEST_CODE_ALL_LOGIN)
-    private void getMultiNo(List<String> deniedPermissions) {
-
-        // 用户否勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权。
-        if (AndPermission.hasAlwaysDeniedPermission(this, deniedPermissions)) {
-            AndPermission.defaultSettingDialog(LoginActivity.this, REQUEST_CODE_SETTING)
-                    .setTitle("友情提示：")
-                    .setMessage("运行该APP必须要您的电话、位置、内存权限，否则APP将无法使用。由于您勾选不再提示，请手动开启权限。")
-                    .setPositiveButton("立刻去开启这三个权限")
-                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(LoginActivity.this, "未给应用授权，页面退出！", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
-//                            MyApplication.getInstance().exit();
-                            finish();
-                        }
-                    })
-                    .show();
-            // 更多自定dialog，请看上面。
-        } else {
-            Toast.makeText(LoginActivity.this, "未给应用授权，页面退出！", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
-//            MyApplication.getInstance().exit();
-            finish();
-        }
-    }
+//    @PermissionYes(REQUEST_CODE_ALL_LOGIN)
+//    private void getMultiYes(List<String> grantedPermissions) {
+//    }
+//
+//    @PermissionNo(REQUEST_CODE_ALL_LOGIN)
+//    private void getMultiNo(List<String> deniedPermissions) {
+//
+//        // 用户否勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权。
+//        if (AndPermission.hasAlwaysDeniedPermission(this, deniedPermissions)) {
+//            AndPermission.defaultSettingDialog(LoginActivity.this, REQUEST_CODE_SETTING)
+//                    .setTitle("友情提示：")
+//                    .setMessage("运行该APP必须要您的电话、位置、内存权限，否则APP将无法使用。由于您勾选不再提示，请手动开启权限。")
+//                    .setPositiveButton("立刻去开启这三个权限")
+//                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            Toast.makeText(LoginActivity.this, "未给应用授权，页面退出！", Toast.LENGTH_LONG).show();
+//                            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
+////                            MyApplication.getInstance().exit();
+//                            finish();
+//                        }
+//                    })
+//                    .show();
+//            // 更多自定dialog，请看上面。
+//        } else {
+//            Toast.makeText(LoginActivity.this, "未给应用授权，页面退出！", Toast.LENGTH_LONG).show();
+//            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
+////            MyApplication.getInstance().exit();
+//            finish();
+//        }
+//    }
 
     //制定布局页面
     @Override
@@ -272,20 +272,20 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void processLogic() {
-        //申请权限
-        AndPermission.with(this)
-                .requestCode(REQUEST_CODE_ALL_LOGIN)
-                .permission(Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_PHONE_STATE)
-                .rationale(new RationaleListener() {
-                    @Override
-                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
-                        // 这里的对话框可以自定义，只要调用rationale.resume()就可以继续申请。
-                        AndPermission.rationaleDialog(LoginActivity.this, rationale).show();
-                    }
-                })
-                .send();
+//        //申请权限
+//        AndPermission.with(this)
+//                .requestCode(REQUEST_CODE_ALL_LOGIN)
+//                .permission(Manifest.permission.ACCESS_COARSE_LOCATION,
+//                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                        Manifest.permission.READ_PHONE_STATE)
+//                .rationale(new RationaleListener() {
+//                    @Override
+//                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+//                        // 这里的对话框可以自定义，只要调用rationale.resume()就可以继续申请。
+//                        AndPermission.rationaleDialog(LoginActivity.this, rationale).show();
+//                    }
+//                })
+//                .send();
     }
 
     @Override

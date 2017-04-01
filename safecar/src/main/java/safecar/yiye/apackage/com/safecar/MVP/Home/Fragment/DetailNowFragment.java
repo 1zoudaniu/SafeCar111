@@ -197,7 +197,7 @@ public class DetailNowFragment extends BaseFragment implements
             uiSettings.setMyLocationButtonEnabled(false); // 是否显示默认的定位按钮
             uiSettings.setTiltGesturesEnabled(true);// 设置地图是否可以倾斜
             uiSettings.setScaleControlsEnabled(true);// 设置地图默认的比例尺是否显示
-            uiSettings.setZoomControlsEnabled(true);
+            uiSettings.setZoomControlsEnabled(false);
         }
 
         progDialog = new ProgressDialog(getContext());

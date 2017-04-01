@@ -3,11 +3,13 @@ package safecar.yiye.apackage.com.safecar.MVP.Home.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tencent.bugly.Bugly;
 
@@ -26,47 +29,30 @@ import safecar.yiye.apackage.com.safecar.MVP.Home.HomeTabActivity;
 import safecar.yiye.apackage.com.safecar.MVP.Home.ZhangPhilListView;
 import safecar.yiye.apackage.com.safecar.MVP.LoginActivity;
 import safecar.yiye.apackage.com.safecar.MVP.SplashActivity;
+import safecar.yiye.apackage.com.safecar.Permission.TestSplashActivity;
 import safecar.yiye.apackage.com.safecar.R;
 
 public class TestActivity extends AppCompatActivity {
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //取消状态栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_test_splash);
 
-
-        SharedPreferences preferences=getSharedPreferences("loginToken", Context.MODE_PRIVATE);
-        String token=preferences.getString("token", "");
-
-        if (!TextUtils.isEmpty(token)) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    startActivity(new Intent(TestActivity.this, HomeTabActivity.class));
-//                    MyApplication.getInstance().exit();
-                    finish();
-                }
-            }, 2000);
+        //7.0以上版本  设置动态权限
+        if (Build.VERSION.SDK_INT >= 24) {
+            Toast.makeText(TestActivity.this,"1！",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(TestActivity.this, SplashActivity.class));
+            finish();
         } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    startActivity(new Intent(TestActivity.this, LoginActivity.class));
-//                    MyApplication.getInstance().exit();
-                    finish();
-                }
-            }, 2000);
+            Toast.makeText(TestActivity.this,"1！",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(TestActivity.this, SplashActivity.class));
+            finish();
         }
-
-
     }
+
 
 }
 
